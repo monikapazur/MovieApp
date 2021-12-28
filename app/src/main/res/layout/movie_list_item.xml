@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
-    android:layout_width="180dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_margin="16dp"
     android:clickable="true"
-    android:focusable="true"
-    android:foreground="?selectableItemBackground">
+    android:focusable="true">
+    <!--android:foreground="?selectableItemBackground"-->
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#160E32"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/card_view_poster"
-            android:layout_width="180dp"
-            android:layout_height="240dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-
-            />
+            android:layout_width="260dp"
+            android:layout_height="380dp"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/card_view_movie_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
             android:ellipsize="end"
+            android:fontFamily="sans-serif"
             android:maxLines="1"
             android:text="Movie title"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/card_view_movie_date"
