@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"
+        android:iconTint="@color/white"
+        />
+    <item
+        android:id="@+id/moviesFragment"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Movies"
+        android:iconTint="@color/white"
+        />
+    <item
+        android:icon="@drawable/ic_baseline_emoji_emotions_24"
+        android:title="Profie" />
+</menu>
