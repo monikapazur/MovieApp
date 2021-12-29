@@ -7,11 +7,12 @@
     android:background="#160E32"
     tools:context=".RegistrationFragment">
 
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/anton"
         android:text="Sign up"
         android:textAlignment="center"
@@ -23,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/emailSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -36,41 +37,46 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:text="e-mail" />
 
+
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/passwordSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPassword"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/emailSignUp"
         tools:text="password" />
 
-    <Button
-        android:id="@+id/button13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Sign up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/passwordAgainSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPassword"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/passwordSignUp"
         tools:text="powtorz haslo" />
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="202dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:text="Sign up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordAgainSignUp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
