@@ -1,8 +1,7 @@
 package com.example.movieapp.details
 
 import androidx.lifecycle.LiveData
-import com.example.movieapp.data.`object`.MovieDetails
-import com.example.movieapp.data.`object`.MovieDetailsVideo
+import com.example.movieapp.data.o.MovieDetails
 import com.example.movieapp.data.api.MovieDBInterface
 import com.example.movieapp.data.repo.MovieDetailsNetDataSource
 import com.example.movieapp.data.repo.NetworkState
@@ -19,7 +18,5 @@ class MovieDetailsRepo(private val apiService :MovieDBInterface) {
     fun getMovieDetailsNetworkState(): LiveData<NetworkState>{
         return movieDetailsNetworkDataSource.networkState
     }
-    fun getMovieDetailsVideo() : LiveData<MovieDetailsVideo>{
-        return movieDetailsNetworkDataSource.movieVideo
-    }
+
 }

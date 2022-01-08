@@ -1,12 +1,9 @@
 package com.example.movieapp.data.repo
 
-import android.bluetooth.BluetoothAdapter.ERROR
 import android.util.Log
-import android.util.Log.ERROR
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.movieapp.data.`object`.MovieDetails
-import com.example.movieapp.data.`object`.MovieDetailsVideo
+import com.example.movieapp.data.o.MovieDetails
 import com.example.movieapp.data.api.MovieDBInterface
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -19,9 +16,6 @@ class MovieDetailsNetDataSource(
     val networkState: LiveData<NetworkState>
         get() = networkState_ //dzieki temu mozemy dostac sie do LiveData ktory z gory jest nie mutowalny
 
-    private val movieVideo_ = MutableLiveData<MovieDetailsVideo>()
-    val movieVideo: LiveData<MovieDetailsVideo>
-            get() = movieVideo_
 
     private val downloadedMovieDetailsResponse_ = MutableLiveData<MovieDetails>()
     val downloadedMovieResponse: LiveData<MovieDetails>

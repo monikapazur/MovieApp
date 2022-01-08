@@ -1,30 +1,24 @@
 package com.example.movieapp.details
 
-import android.net.Uri
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
 import com.bumptech.glide.Glide
 import com.example.movieapp.R
-import com.example.movieapp.data.`object`.MovieDetails
-import com.example.movieapp.data.`object`.MovieDetailsVideo
-import com.example.movieapp.data.api.BASE_YT_URL
+import com.example.movieapp.data.o.MovieDetails
 import com.example.movieapp.data.api.MovieDBClient
 import com.example.movieapp.data.api.MovieDBInterface
 import com.example.movieapp.data.api.POSTER_BASE_URL
-import com.google.android.youtube.player.YouTubeBaseActivity
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerView
+import kotlinx.android.synthetic.main.activity_single_details.*
 
 
 class SingleDetails : AppCompatActivity()  {
 
     private lateinit var viewModel: SingleMovieViewModel
     private lateinit var movieRepository: MovieDetailsRepo
-    private lateinit var movieVideo: MovieDetailsVideo
-    lateinit var youTubePlayer: YouTubePlayer
+    var id_fav_movie:Int? = null
+    var favList: MutableList<MovieDetails>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,14 +35,19 @@ class SingleDetails : AppCompatActivity()  {
         })
         /*viewModel.networkState.observe() tutaj wrocic ładowanie progress bar errory jakby co*/
 
-
+        add_to_favMovies.setOnClickListener {
+            viewModel.movieDetails.observe(this, Observer {
+                viewModel.addFavMovie(it)
+            })
+        }
     }
 
 
     private fun bindUI(it: MovieDetails) {
 
         findViewById<TextView>(R.id.movie_title).text = it.title
-
+        findViewById<TextView>(R.id.movie_release_date).text = it.releaseDate
+        findViewById<TextView>(R.id.descriptionTextView).text = it.overview
         val moviePosterURL = POSTER_BASE_URL + it.posterPath
         Glide.with(this)
             .load(moviePosterURL)

@@ -2,7 +2,7 @@ package com.example.movieapp.data.repo
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import com.example.movieapp.data.`object`.PopularMovies
+import com.example.movieapp.data.o.PopularMovies
 import com.example.movieapp.data.api.MovieDBInterface
 import io.reactivex.disposables.CompositeDisposable
 

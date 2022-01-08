@@ -1,10 +1,6 @@
-package com.example.movieapp.data.`object`
+package com.example.movieapp.data.o
 
 
-import com.example.movieapp.data.`object`.Genre
-import com.example.movieapp.data.`object`.ProductionCompany
-import com.example.movieapp.data.`object`.ProductionCountry
-import com.example.movieapp.data.`object`.SpokenLanguage
 import com.google.gson.annotations.SerializedName
 
 data class MovieDetails(
@@ -45,5 +41,4 @@ data class MovieDetails(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Int,
-    val movieVideo: MovieDetailsVideo
 )

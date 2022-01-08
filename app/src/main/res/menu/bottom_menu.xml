@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/fragmentHome"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Home"
         android:iconTint="@color/white"
@@ -14,7 +14,7 @@
         android:iconTint="@color/white"
         />
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/fragmentProfile"
         android:icon="@drawable/ic_baseline_emoji_emotions_24"
         android:title="Profile" />
 </menu>

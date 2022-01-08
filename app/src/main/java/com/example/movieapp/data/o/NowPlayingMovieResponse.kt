@@ -1,12 +1,15 @@
-package com.example.movieapp.data.`object`
+package com.example.movieapp.data.o
 
 
+
+import com.example.movieapp.data.o.Dates
 import com.google.gson.annotations.SerializedName
 
-data class MovieResponse(
+data class NowPlayingMovieResponse(
+    val dates: Dates,
     val page: Int,
     @SerializedName("results")
-    val popularMoviesList: List<PopularMovies>,
+    val nowPlayingMoviesList: List<NowPlayingMovie>,
     @SerializedName("total_pages")
     val totalPages: Int,
     @SerializedName("total_results")

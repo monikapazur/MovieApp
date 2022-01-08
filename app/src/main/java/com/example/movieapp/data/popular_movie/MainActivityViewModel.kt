@@ -1,10 +1,9 @@
 package com.example.movieapp.data.popular_movie
 
-import android.net.Network
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
-import com.example.movieapp.data.`object`.PopularMovies
+import com.example.movieapp.data.o.PopularMovies
 import com.example.movieapp.data.repo.NetworkState
 import io.reactivex.disposables.CompositeDisposable
 

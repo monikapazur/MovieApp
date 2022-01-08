@@ -1,10 +1,7 @@
 package com.example.movieapp.data.popular_movie
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -19,30 +16,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.data.api.MovieDBClient
 import com.example.movieapp.data.api.MovieDBInterface
-import com.example.movieapp.details.SingleDetails
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class PopularMoviesActivity : AppCompatActivity() {
 
-    private val MainActivityVm by viewModels<MainActivityViewModel>()
+    private lateinit var viewModel: MainActivityViewModel
     lateinit var movieRepo: MoviePageListRepo
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val navView: BottomNavigationView = findViewById(R.id.bottomNavView)
-
-        val navController = findNavController(R.id.main_nav)
-        val appBarConfiguration =
-            AppBarConfiguration(setOf(R.id.fragmentHome, R.id.fragmentProfile))
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-
+        setContentView(R.layout.activity_popular_movies)
+/*
         supportActionBar?.hide()
-    }
-        /*val apiService: MovieDBInterface = MovieDBClient.getClient()
+
+        val apiService: MovieDBInterface = MovieDBClient.getClient()
 
         movieRepo = MoviePageListRepo(apiService)
 
@@ -52,16 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         val gridLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
 
-        *//*val gridLayoutManager = GridLayoutManager(this, 2)
 
-        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
-            override fun getSpanSize(position: Int): Int {
-                val viewType = movieAdapter.getItemViewType(position)
-                if(viewType == movieAdapter.MOVIE_VIEW_TYPE) return 1 //movie view type occupy 1 out of 3 span
-                else return 3
-            }
-
-        }*//*
         var rv_movie_list = findViewById<RecyclerView>(R.id.rv_movie_list)
         rv_movie_list.layoutManager = gridLayoutManager
         rv_movie_list.setHasFixedSize(true)
@@ -69,14 +47,15 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.moviePagedList.observe(this, Observer {
             movieAdapter.submitList(it)
-        })
+        })*/
 
-       *//* viewModel.networkState.observe(this, Observer {
+       /* viewModel.networkState.observe(this, Observer {
             nananan
-        })*//*
-        *//*val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavView)
+        })*/
+
+        /*val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavView)
         val navController = findNavController(R.id.navigationHostFragment)
-        bottomNavigationView.setupWithNavController(navController)*//*
+        bottomNavigationView.setupWithNavController(navController)*/
 
 
 
@@ -89,9 +68,11 @@ class MainActivity : AppCompatActivity() {
             }
         })[MainActivityViewModel::class.java]
     }
-    *//*override fun onSupportNavigateUp(): Boolean {
+/*    override fun onSupportNavigateUp(): Boolean {
 
-        val navController = findNavController(R.id.navigationHostFragment)
+       val navController = findNavController(R.id.navigationHostFragment)
         return navController.navigateUp() || super.onSupportNavigateUp()
-    }*/
+    }
+        */
+
 }

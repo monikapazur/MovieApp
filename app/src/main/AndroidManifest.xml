@@ -12,21 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieApp">
         <activity
+            android:name=".data.popular_movie.PopularMoviesActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity2"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".details.SingleDetails" />
         <activity
             android:name=".data.popular_movie.MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

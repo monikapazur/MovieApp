@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.example.movieapp.data.`object`.PopularMovies
+import com.example.movieapp.data.o.PopularMovies
 import com.example.movieapp.data.api.MovieDBInterface
 import com.example.movieapp.data.api.POST_PER_PAGE
 import com.example.movieapp.data.repo.MovieDataSource

@@ -1,25 +1,22 @@
 package com.example.movieapp.details
 
-import android.net.Network
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.movieapp.data.`object`.MovieDetails
-import com.example.movieapp.data.`object`.MovieDetailsVideo
+import com.example.movieapp.data.o.MovieDetails
+import com.example.movieapp.data.repo.FirebaseRepo
 import com.example.movieapp.data.repo.NetworkState
 import io.reactivex.disposables.CompositeDisposable
 
-class SingleMovieViewModel(private val movieRepository: MovieDetailsRepo,movieId:Int): ViewModel() {
+class SingleMovieViewModel(private val movieRepository: MovieDetailsRepo, movieId: Int) :
+    ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
-
-    val movieDetails : LiveData<MovieDetails> by lazy{
-        movieRepository.fetchSingleDetails(compositeDisposable,movieId)
+    private val repo = FirebaseRepo()
+    val movieDetails: LiveData<MovieDetails> by lazy {
+        movieRepository.fetchSingleDetails(compositeDisposable, movieId)
     }
-    val movieState : LiveData<NetworkState> by lazy{
+    val movieState: LiveData<NetworkState> by lazy {
         movieRepository.getMovieDetailsNetworkState()
-    }
-    val movieVideo : LiveData<MovieDetailsVideo> by lazy{
-        movieRepository.getMovieDetailsVideo()
     }
 
 
@@ -28,4 +25,7 @@ class SingleMovieViewModel(private val movieRepository: MovieDetailsRepo,movieId
         compositeDisposable.dispose()
     }
 
+    fun addFavMovie(movie: MovieDetails) {
+        repo.addFavMovie(movie)
+    }
 }
