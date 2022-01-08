@@ -18,6 +18,9 @@ import com.example.movieapp.data.now_playing_movie.NowPlayingMovieViewModel
 import com.example.movieapp.data.popular_movie.MainActivityViewModel
 import com.example.movieapp.data.popular_movie.MoviePageListRepo
 import com.example.movieapp.data.popular_movie.PopularMoviePagedListAdapter
+import com.example.movieapp.data.top_rated_movie.TopRatedMoviePagedListAdapter
+import com.example.movieapp.data.top_rated_movie.TopRatedMoviePagedListRepo
+import com.example.movieapp.data.top_rated_movie.TopRatedMovieViewModel
 import kotlinx.android.synthetic.main.fragment_home_fragment.*
 
 class FragmentHome : Fragment(), OnFilmItemLongClick {
@@ -26,8 +29,11 @@ class FragmentHome : Fragment(), OnFilmItemLongClick {
     private val adapter = FilmAdapter(this)
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var nowPlayingMovieVm : NowPlayingMovieViewModel
+    private lateinit var topRatedMovieVm : TopRatedMovieViewModel
     lateinit var nowPlayingMovieRepo : NowPlayingMoviePagedListRepo
     lateinit var movieRepo: MoviePageListRepo
+    lateinit var topRatedMovieRepo : TopRatedMoviePagedListRepo
+    /*lateinit var topRatedMovieRepo: TopRatedMoviePageListRepo*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +69,7 @@ class FragmentHome : Fragment(), OnFilmItemLongClick {
         val movieAdapter = PopularMoviePagedListAdapter(requireContext())
         val linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
         val linearLayoutManager2 = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+        val linearLayoutManager3 = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
 
 
         rv_popular_movie_list.layoutManager = linearLayoutManager
@@ -83,6 +90,18 @@ class FragmentHome : Fragment(), OnFilmItemLongClick {
 
         nowPlayingMovieVm.nowPlayingMoviePagedList.observe(viewLifecycleOwner, {
             nowPlayingMovieAdapter.submitList(it)
+        })
+
+        topRatedMovieRepo = TopRatedMoviePagedListRepo(apiService)
+        topRatedMovieVm = getTopRatedMovieViewModel()
+        val topRatedMovieAdapter = TopRatedMoviePagedListAdapter(requireContext())
+
+        rv_top_movie_list.layoutManager = linearLayoutManager3
+        rv_top_movie_list.setHasFixedSize(true)
+        rv_top_movie_list.adapter = topRatedMovieAdapter
+
+        topRatedMovieVm.topRatedMoviePagedList.observe(viewLifecycleOwner, {
+            topRatedMovieAdapter.submitList(it)
         })
 
     }
@@ -116,6 +135,14 @@ class FragmentHome : Fragment(), OnFilmItemLongClick {
                 return NowPlayingMovieViewModel(nowPlayingMovieRepo) as T
             }
         })[NowPlayingMovieViewModel::class.java]
+    }
+    private fun getTopRatedMovieViewModel(): TopRatedMovieViewModel {
+        return ViewModelProviders.of(this, object : ViewModelProvider.Factory{
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return TopRatedMovieViewModel(topRatedMovieRepo) as T
+            }
+        })[TopRatedMovieViewModel::class.java]
     }
 }
 
