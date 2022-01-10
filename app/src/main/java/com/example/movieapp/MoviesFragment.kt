@@ -4,22 +4,17 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide.init
 import com.example.movieapp.data.api.MovieDBClient
 import com.example.movieapp.data.api.MovieDBInterface
 import com.example.movieapp.data.o.PopularMovies
 import com.example.movieapp.data.popular_movie.MainActivityViewModel
 import com.example.movieapp.data.popular_movie.MoviePageListRepo
-import com.example.movieapp.data.popular_movie.PopularMoviePagedListAdapter
-import com.example.movieapp.data.popular_movie.PopularMoviePagedListAdapterToSearch
+import com.example.movieapp.data.search_movie.PopularMoviePagedListAdapterToSearch
 import kotlinx.android.synthetic.main.fragment_movies.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MoviesFragment : Fragment() {

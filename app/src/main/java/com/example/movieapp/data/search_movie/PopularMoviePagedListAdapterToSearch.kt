@@ -1,4 +1,4 @@
-package com.example.movieapp.data.popular_movie
+package com.example.movieapp.data.search_movie
 
 import android.content.Context
 import android.content.Intent
@@ -17,7 +17,9 @@ import com.example.movieapp.data.api.POSTER_BASE_URL
 import com.example.movieapp.data.repo.NetworkState
 import com.example.movieapp.details.SingleDetails
 
-class PopularMoviePagedListAdapterToSearch(public val context: Context): PagedListAdapter<PopularMovies, RecyclerView.ViewHolder>(PopularMoviesDiffCallback()) {
+class PopularMoviePagedListAdapterToSearch(public val context: Context): PagedListAdapter<PopularMovies, RecyclerView.ViewHolder>(
+    PopularMoviesDiffCallback()
+) {
 
     val MOVIE_VIEW_TYPE = 1
     val NETWORK_VIEW_TYPE = 2
@@ -27,6 +29,7 @@ class PopularMoviePagedListAdapterToSearch(public val context: Context): PagedLi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view: View
+
 
         //if(viewType == MOVIE_VIEW_TYPE){
         view = layoutInflater.inflate(R.layout.movie_search_list_item, parent, false)

@@ -55,8 +55,10 @@ class SingleDetails : AppCompatActivity()  {
     private fun bindUI(it: MovieDetails) {
 
         findViewById<TextView>(R.id.movie_title).text = it.title
+        findViewById<TextView>(R.id.movie_rating).text = it.voteAverage.toString()
         findViewById<TextView>(R.id.movie_release_date).text = it.releaseDate
         findViewById<TextView>(R.id.descriptionTextView).text = it.overview
+
         val moviePosterURL = POSTER_BASE_URL + it.posterPath
         Glide.with(this)
             .load(moviePosterURL)
