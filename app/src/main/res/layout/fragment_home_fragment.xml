@@ -12,7 +12,6 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:fontFamily="@font/anton"
         android:text="Movie App"
         android:textAlignment="center"
@@ -38,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
-                android:text="Popular movies cos tam cos tam"
+                android:text="Popular movies "
                 android:textAlignment="viewStart"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
@@ -53,10 +52,12 @@
                 android:layout_height="330dp"
                 android:layout_marginTop="4dp" />
 
-           <TextView
+            <TextView
                 android:id="@+id/upcomingMoviesTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
                 android:text="Upcoming Movies"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
@@ -71,6 +72,8 @@
                 android:id="@+id/topMoviesTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
                 android:text="Top Movies"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
@@ -80,19 +83,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="330dp"
                 android:layout_marginTop="8dp" />
+
             <TextView
                 android:id="@+id/latestMoviesTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
                 android:text="Latest Movies"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_now_movie_list"
                 android:layout_width="match_parent"
                 android:layout_height="330dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="50dp"/>
+                android:layout_marginBottom="50dp" />
 
         </LinearLayout>
 

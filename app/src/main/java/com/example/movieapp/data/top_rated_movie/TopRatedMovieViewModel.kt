@@ -10,7 +10,6 @@ import io.reactivex.disposables.CompositeDisposable
 class TopRatedMovieViewModel(private val topRatedMovieRepo: TopRatedMoviePagedListRepo) :
     ViewModel() {
 
-
     private val compositeDisposable = CompositeDisposable()
 
     val topRatedMoviePagedList: LiveData<PagedList<TopRatedMovie>> by lazy {

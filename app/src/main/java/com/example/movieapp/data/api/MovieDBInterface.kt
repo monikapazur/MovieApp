@@ -1,9 +1,6 @@
 package com.example.movieapp.data.api
 
-import com.example.movieapp.data.o.MovieDetails
-import com.example.movieapp.data.o.MovieResponse
-import com.example.movieapp.data.o.NowPlayingMovieResponse
-import com.example.movieapp.data.o.TopRatedMovieResponse
+import com.example.movieapp.data.o.*
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -39,14 +36,23 @@ interface MovieDBInterface {
     @GET("movie/popular")
     fun getPopularMovie(@Query("page") page: Int): Single<MovieResponse> // do tego zeby wzial numer stony z linku page=1
 
+    @GET("movie/upcoming")
+    fun getUpcomingMovie(@Query("page") page: Int): Single<UpcomingMovieResponse>
+
     @GET("movie/now_playing")
-    fun getNowPlayingMovie(@Query("page") page: Int): Single<NowPlayingMovieResponse> // do tego zeby wzial numer stony z linku page=1
+    fun getNowPlayingMovie(@Query("page") page: Int): Single<NowPlayingMovieResponse>
 
     @GET("movie/top_rated")
-    fun getTopRatedMovie(@Query("page") page: Int): Single<TopRatedMovieResponse> // do tego zeby wzial numer stony z linku page=1
+    fun getTopRatedMovie(@Query("page") page: Int): Single<TopRatedMovieResponse>
 
     @GET("movie/{movie_id}")
-    fun getMovieDet(@Path("movie_id") id:Int): Single<MovieDetails>
+    fun getMovieDet(@Path("movie_id") id: Int): Single<MovieDetails>
 
-
+    @GET("movie/{movie_id}/videos")
+    fun getVideo(
+        @Query("movie_id") id: Int
+    ): Single<List<Video>>
+/*
+    @GET("group/{id}/users")
+    fun groupList(@Path("id") groupId: Int): Call<List<User?>?>?*/
 }

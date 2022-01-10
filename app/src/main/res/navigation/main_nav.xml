@@ -18,4 +18,16 @@
             android:id="@+id/action_fragmentHome_to_fragmentProfile"
             app:destination="@id/fragmentProfile" />
     </fragment>
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.example.movieapp.MoviesFragment"
+        android:label="MoviesFragment"
+        tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/action_moviesFragment2_to_fragmentProfile"
+            app:destination="@id/fragmentProfile" />
+        <action
+            android:id="@+id/action_moviesFragment2_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
 </navigation>

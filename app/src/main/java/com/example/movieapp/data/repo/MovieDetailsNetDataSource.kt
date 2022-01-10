@@ -5,8 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movieapp.data.o.MovieDetails
 import com.example.movieapp.data.api.MovieDBInterface
+import com.example.movieapp.data.o.Video
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Retrofit
 
 class MovieDetailsNetDataSource(
     private val apiService: MovieDBInterface,
@@ -46,5 +49,6 @@ class MovieDetailsNetDataSource(
         }
 
     }
+
 
 }

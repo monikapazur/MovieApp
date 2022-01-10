@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,9 +23,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -33,89 +35,110 @@
             <ImageView
                 android:id="@+id/iv_movie_poster"
                 android:layout_width="match_parent"
-                android:layout_height="550dp"
+                android:layout_height="551dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
                 android:layout_gravity="center"
+                android:layout_marginTop="-72dp"
+                android:layout_marginEnd="-1dp"
                 android:scaleType="matrix"
                 tools:src="@tools:sample/avatars" />
 
             <LinearLayout
+                android:id="@+id/movie_details_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="end">
-    <TextView
-        android:id="@+id/movie_title"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:text="Title"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_movie_poster"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-43dp"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/laygout_bg_det"
+                android:orientation="vertical"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp">
 
-    <LinearLayout
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/add_to_favMovies"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="add to fav" />
+                    <TextView
+                        android:id="@+id/movie_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="Title"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    </LinearLayout>
+                    <!--<LinearLayout
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+-->
+                    <Button
+                        android:id="@+id/add_to_favMovies"
+                        android:layout_width="41dp"
+                        android:layout_height="30dp"
+                        app:icon="@drawable/ic_baseline_star_24" />
 
-</LinearLayout>
+                    <!-- </LinearLayout>-->
+
+                </LinearLayout>
 
 
                 <TextView
+                    android:id="@+id/movie_release_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:text="date"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:id="@+id/movie_release_date"/>
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/descriptionTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:text="Description"
-                    android:textSize="16sp"
                     android:textAlignment="textStart"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:text="Trailer"
                     android:textColor="#FFFFFF" />
 
-               <!-- <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <Button
-                        android:id="@+id/play"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="play" />
-                    <com.google.android.youtube.player.YouTubePlayerView
-                        android:id="@+id/ytPlayer"
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp" />-->
+                <!-- <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:orientation="vertical"
+                     android:gravity="center">
+                     <Button
+                         android:id="@+id/play"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="play" />
+                     <com.google.android.youtube.player.YouTubePlayerView
+                         android:id="@+id/ytPlayer"
+                         android:layout_width="match_parent"
+                         android:layout_height="250dp" />-->
 
 
-            <!--    </LinearLayout>-->
+                <!--    </LinearLayout>-->
 
                 <!--<fragment
                     android:layout_width="match_parent"
@@ -126,12 +149,12 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </ScrollView>
 
 
-</LinearLayout>
+</RelativeLayout>
 
 
 

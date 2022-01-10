@@ -31,8 +31,17 @@ class SingleDetails : AppCompatActivity()  {
         movieRepository = MovieDetailsRepo(apiService)
         viewModel = getViewModel(movieId)
         viewModel.movieDetails.observe(this, Observer {
+
             bindUI(it)
+
+            /*    viewModel.getVideo(it.id)*/
+
         })
+
+        /*viewModel.videos.observe(this, Observer {
+            it.
+        })*/
+
         /*viewModel.networkState.observe() tutaj wrocic ładowanie progress bar errory jakby co*/
 
         add_to_favMovies.setOnClickListener {
@@ -53,7 +62,6 @@ class SingleDetails : AppCompatActivity()  {
             .load(moviePosterURL)
             .into(findViewById(R.id.iv_movie_poster))
         /*youTubePlayer = findViewById(R.id.ytPlayer)*/
-
 
         /*val movieVideoURL = BASE_YT_URL + viewModel.movieVideo.value?.key*/
 

@@ -11,8 +11,6 @@ const val API_KEY = "e7294c2a2fdb6cf9277febb3aad59c96"
 const val BASE_URL = "https://api.themoviedb.org/3/"
 const val BASE_YT_URL = "https://www.youtube.com/watch?v="
 
-
-
 const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500"
 const val FIRST_PAGE = 1
 const val POST_PER_PAGE = 20
@@ -20,7 +18,7 @@ const val POST_PER_PAGE = 20
 object MovieDBClient {
     fun getClient(): MovieDBInterface {
 
-        val requestInterceptor = Interceptor { chain -> //interceptor przyjmuje tylko lambde
+        val requestInterceptor = Interceptor { chain ->
             val url = chain.request()
                 .url()
                 .newBuilder()
