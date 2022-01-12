@@ -25,8 +25,6 @@ class SingleDetails : AppCompatActivity() {
 
     private lateinit var videoRepo: VideoRepo
 
-    var id_fav_movie: Int? = null
-    var favList: MutableList<MovieDetails>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,10 +45,10 @@ class SingleDetails : AppCompatActivity() {
         var videoVm = getVideoViewModel(movieId)
         videoVm.getVideo(movieId)
         videoVm.videoResponse.observe(this, {
-                /*val key = it[0].key*/
+            /*val key = it[0].key*/
             val key = it.videosList[0].key
             click_to_watch_trailer.setOnClickListener {
-                val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:"+ key))
+                val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + key))
                 val webIntent = Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse("http://www.youtube.com/watch?v=" + key)
@@ -62,21 +60,6 @@ class SingleDetails : AppCompatActivity() {
                 }
             }
         })
-        /*videoVm.video.observe(this,{
-            val key = it.key
-            click_to_watch_trailer.setOnClickListener {
-                val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:"+ key))
-                val webIntent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("http://www.youtube.com/watch?v=" + key)
-                )
-                try {
-                    this.startActivity(appIntent)
-                } catch (ex: ActivityNotFoundException) {
-                    this.startActivity(webIntent)
-                }
-            }
-        })*/
 
         add_to_favMovies.setOnClickListener {
             viewModel.movieDetails.observe(this, Observer {
@@ -110,13 +93,6 @@ class SingleDetails : AppCompatActivity() {
         Glide.with(this)
             .load(moviePosterURL)
             .into(findViewById(R.id.iv_movie_poster))
-        /*youTubePlayer = findViewById(R.id.ytPlayer)*/
-
-        /*val movieVideoURL = BASE_YT_URL + viewModel.movieVideo.value?.key*/
-
-        /*  val movieVideoURL = "www.youtube.com/watch?v=Jd3nTm-wvyA"*/
-
-        /*  VideosFragment()*/
 
     }
 

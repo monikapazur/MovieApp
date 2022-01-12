@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.example.movieapp.MoviesFragment"
+        android:name="com.example.movieapp.data.search_movie.MoviesFragment"
         android:label="MoviesFragment"
         tools:layout="@layout/fragment_movies">
         <action

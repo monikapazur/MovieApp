@@ -52,6 +52,12 @@ interface MovieDBInterface {
     suspend fun getVideo(
         @Path("movie_id") movieId: Int
     ): VideoResponse
+
+    @GET("search/movie")
+    suspend fun getSearchMovie(
+        @Query("query") query: String
+
+    ): SearchMovieResponse
 /*
     @GET("group/{id}/users")
     fun groupList(@Path("id") groupId: Int): Call<List<User?>?>?*/
