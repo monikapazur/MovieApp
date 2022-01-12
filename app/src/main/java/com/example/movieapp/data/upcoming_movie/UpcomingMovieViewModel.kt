@@ -19,9 +19,6 @@ class UpcomingMovieViewModel(private val upcomingMovieRepo: UpcomingMoviePagedLi
         upcomingMovieRepo.getNetworkState()
     }
 
-    fun upcomingMovieListIsEmpty(): Boolean {
-        return upcomingMoviePagedList.value?.isEmpty() ?: true
-    }
 
     override fun onCleared() {
         super.onCleared()

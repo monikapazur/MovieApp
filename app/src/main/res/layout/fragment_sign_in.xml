@@ -65,7 +65,7 @@
                 android:layout_marginRight="28dp"
                 android:ems="10"
                 android:inputType="textEmailAddress"
-                android:text="e-mail"
+                android:hint="e-mail"
                 android:textColor="@color/black"
                 tools:text="e-mail" />
 
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPassword"
-                    android:text="password"
+                    android:hint="password"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 

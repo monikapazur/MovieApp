@@ -50,6 +50,7 @@ class PopularMoviePagedListAdapterToSearch(public val context: Context): PagedLi
         /*else{
 
         }*/
+
         val title = holder.itemView.findViewById<TextView>(R.id.card_view_movie_title)
         val date = holder.itemView.findViewById<TextView>(R.id.card_view_movie_date)
         val image = holder.itemView.findViewById<ImageView>(R.id.card_view_poster)
@@ -61,13 +62,6 @@ class PopularMoviePagedListAdapterToSearch(public val context: Context): PagedLi
             .load(moviePosterURL)
             .into(image)
 
-        /* itemView.findViewById<TextView>(R.id.card_view_movie_title).text = movie?.title
-         itemView.findViewById<TextView>(R.id.card_view_movie_date).text = movie?.releaseDate
-
-         val moviePosterURL = POSTER_BASE_URL + movie?.posterPath
-         Glide.with(itemView.context)
-             .load(moviePosterURL)
-             .into(itemView.findViewById<ImageView>(R.id.card_view_poster))*/
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, SingleDetails::class.java)

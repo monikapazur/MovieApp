@@ -27,8 +27,9 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:foregroundTint="@color/white"
-        android:text="search"
-        android:textColor="@color/white" />
+        android:hint="search"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <ScrollView
         android:layout_width="match_parent"

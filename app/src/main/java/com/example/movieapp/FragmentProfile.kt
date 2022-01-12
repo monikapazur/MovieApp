@@ -14,12 +14,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.data.Film
 import com.example.movieapp.data.User
-import com.example.movieapp.data.o.MovieDetails
 import com.example.movieapp.data.api.MovieDBClient
 import com.example.movieapp.data.api.MovieDBInterface
+import com.example.movieapp.data.o.MovieDetails
 import com.example.movieapp.details.MovieDetailsRepo
 import com.example.movieapp.details.SingleMovieViewModel
 import com.google.firebase.auth.FirebaseAuth
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_profile_fragment.*
 
 class FragmentProfile : Fragment(), OnFilmItemLongClick {
@@ -28,6 +29,7 @@ class FragmentProfile : Fragment(), OnFilmItemLongClick {
     private lateinit var viewModel: SingleMovieViewModel
     private lateinit var movieRepository: MovieDetailsRepo
     private val profileVm by viewModels<FragmentProfileViewModel>()
+
     /*private val adapter = FilmAdapter(this)*/
     private val adapter = MovieAdapter()
     override fun onCreateView(
@@ -42,7 +44,8 @@ class FragmentProfile : Fragment(), OnFilmItemLongClick {
 
         setUpProfileData()
         profileLogout()
-        fav_films_recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        fav_films_recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         fav_films_recyclerView.adapter = adapter
 
 
@@ -59,21 +62,33 @@ class FragmentProfile : Fragment(), OnFilmItemLongClick {
             user.favFilms.let {
                 list = it as List<Int>
             }
-           /* for (i in list){
+            /* for (i in list){
+                 viewModel = getViewModel(i)
+             }*/
+            for (i in list) {
                 viewModel = getViewModel(i)
-            }*/
-            for (i in list){
-                viewModel = getViewModel(i)
-                Toast.makeText(requireContext(),"okej",Toast.LENGTH_SHORT).show()
-                viewModel.movieDetails.observe(viewLifecycleOwner, {
+                val fetchSingleDetails =
+                    movieRepository.fetchSingleDetails(CompositeDisposable(), i)
+                        .observe(viewLifecycleOwner,
+                            {
+                                Toast.makeText(
+                                    requireContext(),
+                                    it.originalTitle,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                movieFavList.add(it)
+                                adapter.setFavMovies(movieFavList)
+                            })
+                /*  Toast.makeText(requireContext(),"okej1",Toast.LENGTH_SHORT).show()
+                  viewModel.movieDetails.observe(viewLifecycleOwner, {
 
-                    movieFavList.add(it)
-                    Toast.makeText(requireContext(),"okej",Toast.LENGTH_SHORT).show()
-                    adapter.setFavMovies(movieFavList)
-                })
+                      movieFavList.add(it)
+                      Toast.makeText(requireContext(),"okej2",Toast.LENGTH_SHORT).show()
+  */
+                //})
             }
-
-
+/*
+                adapter . setFavMovies (movieFavList)*/
             bindUserData(user)
         })
 
@@ -108,9 +123,7 @@ class FragmentProfile : Fragment(), OnFilmItemLongClick {
             requireActivity().finish()
         }
     }
-    private fun addFavMovie(){
 
-    }
     private fun getViewModel(movieId: Int): SingleMovieViewModel {
         return ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {

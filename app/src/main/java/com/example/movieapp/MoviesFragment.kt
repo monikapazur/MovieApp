@@ -22,7 +22,7 @@ class MoviesFragment : Fragment() {
     lateinit var movieRepo: MoviePageListRepo
 
     private lateinit var tempArrayList: PagedList<PopularMovies>
-    private lateinit var newArrayList: Unit
+    private lateinit var newArrayList: PopularMovies
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,12 +65,12 @@ class MoviesFragment : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
 
-                lateinit var tempList: LiveData<PagedList<PopularMovies>>
+                /*var tempList = List<PopularMovies>*/
 
                 viewModel.moviePagedList.observe(viewLifecycleOwner,{
                     for (i in it){
                         if(i.title.contains(searchEditText.text)){
-                        tempList.value?.add(i)
+                        /*tempList.value?.add(i)*/
                         }
                     }
 

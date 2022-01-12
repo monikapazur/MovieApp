@@ -23,7 +23,7 @@ data class UpcomingMovie(
     val title: String,
     val video: Boolean,
     @SerializedName("vote_average")
-    val voteAverage: Int,
+    val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Int
 )
