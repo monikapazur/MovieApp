@@ -29,10 +29,7 @@ class MoviesFragment : Fragment() {
 
     private lateinit var searchMovieRepo: SearchMovieRepo
 
-    private lateinit var tempArrayList: PagedList<PopularMovies>
-    private var newArrayList: ArrayList<PopularMovies> = ArrayList()
 
-    /*private var adapter: RecyclerView.Adapter<SearchMovieListAdapter.ViewHolder>? = null*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

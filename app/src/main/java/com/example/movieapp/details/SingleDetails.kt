@@ -86,13 +86,18 @@ class SingleDetails : AppCompatActivity() {
         findViewById<TextView>(R.id.movie_rating).text = it.voteAverage.toString()
         findViewById<TextView>(R.id.movie_release_date).text = it.releaseDate
         findViewById<TextView>(R.id.descriptionTextView).text = it.overview
-        findViewById<TextView>(R.id.category).text = list.toString()
+        if(list.isNotEmpty()){
+            findViewById<TextView>(R.id.category).text = list.toString()
+        }
 
 
-        val moviePosterURL = POSTER_BASE_URL + it.posterPath
-        Glide.with(this)
-            .load(moviePosterURL)
-            .into(findViewById(R.id.iv_movie_poster))
+        if (it.posterPath.isNotEmpty()) {
+            val moviePosterURL = POSTER_BASE_URL + it.posterPath
+            Glide.with(this)
+                .load(moviePosterURL)
+                .into(findViewById(R.id.iv_movie_poster))
+        }
+
 
     }
 
