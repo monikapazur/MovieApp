@@ -23,15 +23,17 @@ import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_profile_fragment.*
 
-class FragmentProfile : Fragment(), OnFilmItemLongClick {
+class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLongClick, OnToWatchMovieItemLongClick {
 
     private val auth = FirebaseAuth.getInstance()
     private lateinit var viewModel: SingleMovieViewModel
     private lateinit var movieRepository: MovieDetailsRepo
     private val profileVm by viewModels<FragmentProfileViewModel>()
-
+    lateinit var adapter: FavMovieAdapter
     /*private val adapter = FilmAdapter(this)*/
-    private val adapter = MovieAdapter()
+
+    lateinit var watchedAdapter: WatchedMovieAdapter
+    lateinit var toWatchAdapter: ToWatchMovieAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,10 +46,22 @@ class FragmentProfile : Fragment(), OnFilmItemLongClick {
 
         setUpProfileData()
         profileLogout()
+        adapter = FavMovieAdapter(requireContext(),this)
         fav_films_recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         fav_films_recyclerView.adapter = adapter
 
+        watchedAdapter = WatchedMovieAdapter(requireContext(),this)
+        var watchedMoviesLinearLayout =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        watched_movies_recyclerView.layoutManager = watchedMoviesLinearLayout
+        watched_movies_recyclerView.adapter = watchedAdapter
+
+        toWatchAdapter = ToWatchMovieAdapter(requireContext(),this)
+        var toWatchMoviesLinearLayout =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        toWatchMovies_recyclerView.layoutManager = toWatchMoviesLinearLayout
+        toWatchMovies_recyclerView.adapter = toWatchAdapter
 
     }
 
@@ -55,17 +69,24 @@ class FragmentProfile : Fragment(), OnFilmItemLongClick {
         super.onActivityCreated(savedInstanceState)
 
         profileVm.user.observe(viewLifecycleOwner, { user ->
-            var list = listOf<Int>()
+            var favList = listOf<Int>()
+            var toWatchList = listOf<Int>()
+            var watchedList = listOf<Int>()
             val movieFavList: MutableList<MovieDetails> = mutableListOf()
+            val toWatchMovieList: MutableList<MovieDetails> = mutableListOf()
+            val watchedMovieList: MutableList<MovieDetails> = mutableListOf()
             val apiService: MovieDBInterface = MovieDBClient.getClient()
             movieRepository = MovieDetailsRepo(apiService)
             user.favFilms.let {
-                list = it as List<Int>
+                favList = it as List<Int>
             }
-            /* for (i in list){
-                 viewModel = getViewModel(i)
-             }*/
-            for (i in list) {
+            user.watchedMovie.let {
+                watchedList = it as List<Int>
+            }
+            user.toWatchMovie.let {
+                toWatchList = it as List<Int>
+            }
+            for (i in favList) {
                 viewModel = getViewModel(i)
                 val fetchSingleDetails =
                     movieRepository.fetchSingleDetails(CompositeDisposable(), i)
@@ -79,25 +100,45 @@ class FragmentProfile : Fragment(), OnFilmItemLongClick {
                                 movieFavList.add(it)
                                 adapter.setFavMovies(movieFavList)
                             })
-                /*  Toast.makeText(requireContext(),"okej1",Toast.LENGTH_SHORT).show()
-                  viewModel.movieDetails.observe(viewLifecycleOwner, {
 
-                      movieFavList.add(it)
-                      Toast.makeText(requireContext(),"okej2",Toast.LENGTH_SHORT).show()
-  */
-                //})
             }
-/*
-                adapter . setFavMovies (movieFavList)*/
+            for (i in watchedList) {
+                viewModel = getViewModel(i)
+                val fetchSingleDetails =
+                    movieRepository.fetchSingleDetails(CompositeDisposable(), i)
+                        .observe(viewLifecycleOwner,
+                            {
+                                Toast.makeText(
+                                    requireContext(),
+                                    it.originalTitle,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                watchedMovieList.add(it)
+                                watchedAdapter.setWatchedMovies(watchedMovieList)
+                            })
+
+            }
+            for (i in toWatchList) {
+                viewModel = getViewModel(i)
+                val fetchSingleDetails =
+                    movieRepository.fetchSingleDetails(CompositeDisposable(), i)
+                        .observe(viewLifecycleOwner,
+                            {
+                                Toast.makeText(
+                                    requireContext(),
+                                    it.originalTitle,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                toWatchMovieList.add(it)
+                                toWatchAdapter.setToWatchMovies(toWatchMovieList)
+                            })
+
+            }
+
             bindUserData(user)
         })
 
 
-    }
-
-    override fun onFilmLongClick(film: Film, position: Int) {
-        /*profileVm.deleteFavFilms(film)
-        adapter.deleteFilm(film, position)*/
     }
 
     private fun bindUserData(user: User) {
@@ -131,5 +172,22 @@ class FragmentProfile : Fragment(), OnFilmItemLongClick {
                 return SingleMovieViewModel(movieRepository, movieId) as T
             }
         })[SingleMovieViewModel::class.java]
+    }
+
+    override fun onMovieLongClick(movie: MovieDetails, position: Int) {
+        profileVm.deleteFavMovie(movie)
+        adapter.deleteMovie(movie, position)
+
+    }
+
+    override fun onWatchedMovieLongClick(movie: MovieDetails, position: Int) {
+        profileVm.deleteWatchedMovie(movie)
+        watchedAdapter.deleteWatchedMovie(movie,position)
+    }
+
+    override fun onToWatchMovieLongClick(movie: MovieDetails, position: Int) {
+        profileVm.deleteToWatchMovie(movie)
+        toWatchAdapter.deleteToWatchMovie(movie,position)
+
     }
 }

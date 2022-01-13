@@ -8,6 +8,7 @@ import com.example.movieapp.data.o.Video
 import com.example.movieapp.data.o.VideoResponse
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class VideoViewModel(private val videoRepo: VideoRepo, movieId: Int) :ViewModel(){
 

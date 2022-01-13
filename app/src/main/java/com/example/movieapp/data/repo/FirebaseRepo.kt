@@ -51,6 +51,39 @@ class FirebaseRepo {
 
         return cloudResult
     }
+    fun getWatchedMovies(list: List<Int?>?):MutableLiveData<List<Int?>>{
+        val cloudResult = MutableLiveData<List<Int?>>()
+        val uid = auth.currentUser?.uid
+        cloud.collection("users")
+            .document(uid!!)
+            .get()
+            .addOnSuccessListener {
+                val user = it.toObject(User::class.java)
+                cloudResult.postValue(user!!.watchedMovie)
+            }
+            .addOnFailureListener {
+                Log.d("REPO_DEBUG", it.message.toString())
+            }
+
+        return cloudResult
+    }
+    fun getToWatchMovies(list: List<Int?>?):MutableLiveData<List<Int?>>{
+        val cloudResult = MutableLiveData<List<Int?>>()
+        val uid = auth.currentUser?.uid
+        cloud.collection("users")
+            .document(uid!!)
+            .get()
+            .addOnSuccessListener {
+                val user = it.toObject(User::class.java)
+                cloudResult.postValue(user!!.toWatchMovie)
+            }
+            .addOnFailureListener {
+                Log.d("REPO_DEBUG", it.message.toString())
+            }
+
+        return cloudResult
+    }
+
 
     fun getMovies(): LiveData<List<Film>> {
         val cloudResult = MutableLiveData<List<Film>>()
@@ -87,11 +120,30 @@ class FirebaseRepo {
                 Log.d("REPO_DEBUG", it.message.toString())
             }
     }
-
-
-    fun deleteFavFilm(film: Film) {
+    fun addToWatchMovie(movie: MovieDetails){
         cloud.collection("users").document(auth.currentUser?.uid!!)
-            .update("favFilms", FieldValue.arrayRemove(film.id))
+            .update("toWatchMovie", FieldValue.arrayUnion(movie.id))
+            .addOnSuccessListener {
+                Log.d("REPO_DEBUG", "movie dodany do do obejrzenia")
+            }
+            .addOnFailureListener {
+                Log.d("REPO_DEBUG", it.message.toString())
+            }
+    }
+    fun addToWatchedMovie(movie: MovieDetails){
+        cloud.collection("users").document(auth.currentUser?.uid!!)
+            .update("watchedMovie", FieldValue.arrayUnion(movie.id))
+            .addOnSuccessListener {
+                Log.d("REPO_DEBUG", "movie dodany do obejrzanych")
+            }
+            .addOnFailureListener {
+                Log.d("REPO_DEBUG", it.message.toString())
+            }
+    }
+
+    fun deleteFavMovies(movie: MovieDetails) {
+        cloud.collection("users").document(auth.currentUser?.uid!!)
+            .update("favFilms", FieldValue.arrayRemove(movie.id))
             .addOnSuccessListener {
                 Log.d("REPO_DEBUG", "Usunieto z ulub")
             }
@@ -99,7 +151,26 @@ class FirebaseRepo {
                 Log.d("REPO_DEBUG", it.message.toString())
             }
     }
-
+    fun deleteWatchedMovies(movie: MovieDetails) {
+        cloud.collection("users").document(auth.currentUser?.uid!!)
+            .update("watchedMovie", FieldValue.arrayRemove(movie.id))
+            .addOnSuccessListener {
+                Log.d("REPO_DEBUG", "Usunieto z ulub")
+            }
+            .addOnFailureListener {
+                Log.d("REPO_DEBUG", it.message.toString())
+            }
+    }
+    fun deleteToWatchMovies(movie: MovieDetails) {
+        cloud.collection("users").document(auth.currentUser?.uid!!)
+            .update("toWatchMovie", FieldValue.arrayRemove(movie.id))
+            .addOnSuccessListener {
+                Log.d("REPO_DEBUG", "Usunieto z ulub")
+            }
+            .addOnFailureListener {
+                Log.d("REPO_DEBUG", it.message.toString())
+            }
+    }
     fun getFavFilms(list: List<String?>?): LiveData<List<Film>> {
         val cloudResult = MutableLiveData<List<Film>>()
 

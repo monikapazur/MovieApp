@@ -41,12 +41,7 @@ class PopularMoviePagedListAdapter(public val context: Context): PagedListAdapte
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-       // if(getItemViewType(position) == MOVIE_VIEW_TYPE){
-            //(holder as MovieItemViewHolder).bind(getItem(position),context)
-        //}
-        /*else{
 
-        }*/
         val title = holder.itemView.findViewById<TextView>(R.id.card_view_movie_title)
         val date = holder.itemView.findViewById<TextView>(R.id.card_view_movie_date)
         val image = holder.itemView.findViewById<ImageView>(R.id.card_view_poster)
@@ -57,14 +52,6 @@ class PopularMoviePagedListAdapter(public val context: Context): PagedListAdapte
         Glide.with(holder.itemView.context)
             .load(moviePosterURL)
             .into(image)
-
-       /* itemView.findViewById<TextView>(R.id.card_view_movie_title).text = movie?.title
-        itemView.findViewById<TextView>(R.id.card_view_movie_date).text = movie?.releaseDate
-
-        val moviePosterURL = POSTER_BASE_URL + movie?.posterPath
-        Glide.with(itemView.context)
-            .load(moviePosterURL)
-            .into(itemView.findViewById<ImageView>(R.id.card_view_poster))*/
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, SingleDetails::class.java)

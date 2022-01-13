@@ -36,6 +36,12 @@ class SingleMovieViewModel(private val movieRepository: MovieDetailsRepo, movieI
     fun addFavMovie(movie: MovieDetails) {
         repo.addFavMovie(movie)
     }
+    fun addToWatchMovie(movie: MovieDetails){
+        repo.addToWatchMovie(movie)
+    }
+    fun addToWatchedMovie(movie: MovieDetails){
+        repo.addToWatchedMovie(movie)
+    }
 
     /*fun getVideo(movie_id: Int) {
         viewModelScope.launch {

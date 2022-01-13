@@ -44,8 +44,11 @@ class SingleDetails : AppCompatActivity() {
         videoRepo = VideoRepo()
         var videoVm = getVideoViewModel(movieId)
         videoVm.getVideo(movieId)
+        /*if (videoVm.videoResponse.value!!.videosList.isEmpty()) {
+            Toast.makeText(this, "nie ma zawiastuna", Toast.LENGTH_SHORT).show()
+        } else {*/
         videoVm.videoResponse.observe(this, {
-            /*val key = it[0].key*/
+
             val key = it.videosList[0].key
             click_to_watch_trailer.setOnClickListener {
                 val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + key))
@@ -59,17 +62,42 @@ class SingleDetails : AppCompatActivity() {
                     this.startActivity(webIntent)
                 }
             }
-        })
 
+
+        })
+        //}
+        add_to_WatchedMovie.setOnClickListener {
+            viewModel.movieDetails.observe(this, Observer {
+                viewModel.addToWatchedMovie(it)
+                Toast.makeText(
+                    this,
+                    it.originalTitle + " add toWatched movies",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            })
+        }
+        add_to_toWatchMovie.setOnClickListener {
+            viewModel.movieDetails.observe(this, Observer {
+                viewModel.addToWatchMovie(it)
+                Toast.makeText(
+                    this,
+                    it.originalTitle + " add to toWatch movies",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            })
+        }
         add_to_favMovies.setOnClickListener {
             viewModel.movieDetails.observe(this, Observer {
                 viewModel.addFavMovie(it)
                 Toast.makeText(
                     this,
-                    it.originalTitle + "add to favourite movies",
+                    it.originalTitle + " add to Favourite movies",
                     Toast.LENGTH_SHORT
                 ).show()
-                add_to_favMovies.setImageResource(R.drawable.ic_baseline_star_24)
+               /* add_to_favMovies.setImageResource(R.drawable.ic_baseline_star_24)*/
+
             })
         }
     }
@@ -86,17 +114,13 @@ class SingleDetails : AppCompatActivity() {
         findViewById<TextView>(R.id.movie_rating).text = it.voteAverage.toString()
         findViewById<TextView>(R.id.movie_release_date).text = it.releaseDate
         findViewById<TextView>(R.id.descriptionTextView).text = it.overview
-        if(list.isNotEmpty()){
-            findViewById<TextView>(R.id.category).text = list.toString()
-        }
+        findViewById<TextView>(R.id.category).text = list.toString()
 
 
-        if (it.posterPath.isNotEmpty()) {
-            val moviePosterURL = POSTER_BASE_URL + it.posterPath
-            Glide.with(this)
-                .load(moviePosterURL)
-                .into(findViewById(R.id.iv_movie_poster))
-        }
+        val moviePosterURL = POSTER_BASE_URL + it.posterPath
+        Glide.with(this)
+            .load(moviePosterURL)
+            .into(findViewById(R.id.iv_movie_poster))
 
 
     }

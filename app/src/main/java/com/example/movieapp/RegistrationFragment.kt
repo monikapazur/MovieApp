@@ -47,7 +47,8 @@ class RegistrationFragment : BaseFragment() {
                                     "",
                                     auth.user!!.email,
                                     listOf(),
-                                    ""
+                                    listOf(),
+                                    listOf()
                                 )
                                 registrationVm.createNewUser(user)
                                 startApp()

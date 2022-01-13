@@ -1,12 +1,10 @@
 package com.example.movieapp
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import com.example.movieapp.data.Film
-import com.example.movieapp.data.User
+import com.example.movieapp.data.o.MovieDetails
 import com.example.movieapp.data.repo.FirebaseRepo
-import com.example.movieapp.details.SingleMovieViewModel
 
 class FragmentProfileViewModel : ViewModel() {
     private val repo = FirebaseRepo()
@@ -18,8 +16,19 @@ class FragmentProfileViewModel : ViewModel() {
    val favMovies = user.switchMap {
        repo.getFavMovies(it.favFilms)
    }
-    fun deleteFavFilms(film: Film){
-        repo.deleteFavFilm(film)
+    fun deleteFavMovie(movie: MovieDetails){
+        repo.deleteFavMovies(movie)
+    }
+    fun deleteWatchedMovie(movie: MovieDetails){
+        repo.deleteWatchedMovies(movie)
+    }fun deleteToWatchMovie(movie: MovieDetails){
+        repo.deleteToWatchMovies(movie)
+    }
+    val watchedMovies = user.switchMap {
+        repo.getWatchedMovies(it.watchedMovie)
+    }
+    val toWatchMovies = user.switchMap {
+        repo.getToWatchMovies(it.toWatchMovie)
     }
 
     fun editProfileData(map: Map<String, String>){

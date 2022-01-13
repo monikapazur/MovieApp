@@ -14,29 +14,30 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_gravity="center">
 
-    <TextView
-        android:layout_width="349dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/anton"
-        android:gravity="center"
-        android:text="Your profile"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/logoutBtn"
-        android:layout_marginRight="18dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#160E32"
-        app:icon="@drawable/ic_baseline_power_settings_new_24" />
-</LinearLayout>
+            <TextView
+                android:layout_width="349dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/anton"
+                android:gravity="center"
+                android:text="Your profile"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/logoutBtn"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="18dp"
+                android:backgroundTint="#160E32"
+                app:icon="@drawable/ic_baseline_power_settings_new_24" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,8 +62,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/yourNameTextView"
@@ -124,20 +125,64 @@
             </LinearLayout>
 
         </LinearLayout>
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/favMovieTextView"
-    android:text="Favourite Movies"
-    android:textSize="18dp"
-    android:textColor="@color/white"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fav_films_recyclerView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="346dp"
-            android:layout_marginTop="8dp"
-           />
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/favMovieTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Favourite Movies"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fav_films_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="346dp"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/watchedMovieTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Watched Movies"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/watched_movies_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="346dp"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/toWatchMovieTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="to Watch Movies"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/toWatchMovies_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="346dp"
+                    android:layout_marginTop="8dp" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
     </LinearLayout>
 
 </LinearLayout>

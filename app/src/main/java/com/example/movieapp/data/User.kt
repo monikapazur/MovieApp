@@ -6,6 +6,8 @@ data class User(
     val surname: String? = null,
     val email: String? = null,
     val favFilms: List<Int?>? = null,
+    val watchedMovie: List<Int?>? = null,
+    val toWatchMovie: List<Int?>? = null,
     val image: String? = null
 ) {
 }
