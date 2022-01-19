@@ -5,14 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.movieapp.data.Film
 import com.example.movieapp.data.User
 import com.example.movieapp.data.api.MovieDBClient
 import com.example.movieapp.data.api.MovieDBInterface
@@ -23,15 +21,14 @@ import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_profile_fragment.*
 
-class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLongClick, OnToWatchMovieItemLongClick {
+class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLongClick,
+    OnToWatchMovieItemLongClick {
 
     private val auth = FirebaseAuth.getInstance()
     private lateinit var viewModel: SingleMovieViewModel
     private lateinit var movieRepository: MovieDetailsRepo
     private val profileVm by viewModels<FragmentProfileViewModel>()
     lateinit var adapter: FavMovieAdapter
-    /*private val adapter = FilmAdapter(this)*/
-
     lateinit var watchedAdapter: WatchedMovieAdapter
     lateinit var toWatchAdapter: ToWatchMovieAdapter
     override fun onCreateView(
@@ -46,18 +43,18 @@ class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLong
 
         setUpProfileData()
         profileLogout()
-        adapter = FavMovieAdapter(requireContext(),this)
+        adapter = FavMovieAdapter(requireContext(), this)
         fav_films_recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         fav_films_recyclerView.adapter = adapter
 
-        watchedAdapter = WatchedMovieAdapter(requireContext(),this)
+        watchedAdapter = WatchedMovieAdapter(requireContext(), this)
         var watchedMoviesLinearLayout =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         watched_movies_recyclerView.layoutManager = watchedMoviesLinearLayout
         watched_movies_recyclerView.adapter = watchedAdapter
 
-        toWatchAdapter = ToWatchMovieAdapter(requireContext(),this)
+        toWatchAdapter = ToWatchMovieAdapter(requireContext(), this)
         var toWatchMoviesLinearLayout =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         toWatchMovies_recyclerView.layoutManager = toWatchMoviesLinearLayout
@@ -92,11 +89,6 @@ class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLong
                     movieRepository.fetchSingleDetails(CompositeDisposable(), i)
                         .observe(viewLifecycleOwner,
                             {
-                                Toast.makeText(
-                                    requireContext(),
-                                    it.originalTitle,
-                                    Toast.LENGTH_SHORT
-                                ).show()
                                 movieFavList.add(it)
                                 adapter.setFavMovies(movieFavList)
                             })
@@ -108,11 +100,6 @@ class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLong
                     movieRepository.fetchSingleDetails(CompositeDisposable(), i)
                         .observe(viewLifecycleOwner,
                             {
-                                Toast.makeText(
-                                    requireContext(),
-                                    it.originalTitle,
-                                    Toast.LENGTH_SHORT
-                                ).show()
                                 watchedMovieList.add(it)
                                 watchedAdapter.setWatchedMovies(watchedMovieList)
                             })
@@ -124,17 +111,11 @@ class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLong
                     movieRepository.fetchSingleDetails(CompositeDisposable(), i)
                         .observe(viewLifecycleOwner,
                             {
-                                Toast.makeText(
-                                    requireContext(),
-                                    it.originalTitle,
-                                    Toast.LENGTH_SHORT
-                                ).show()
                                 toWatchMovieList.add(it)
                                 toWatchAdapter.setToWatchMovies(toWatchMovieList)
                             })
 
             }
-
             bindUserData(user)
         })
 
@@ -152,7 +133,6 @@ class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLong
         submitButton.setOnClickListener {
             val name = yourNameEditText.text.trim().toString()
             val surname = yourSurnameEditText.text.trim().toString()
-
             val map = mapOf("name" to name, "surname" to surname)
             profileVm.editProfileData(map)
         }
@@ -182,12 +162,12 @@ class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLong
 
     override fun onWatchedMovieLongClick(movie: MovieDetails, position: Int) {
         profileVm.deleteWatchedMovie(movie)
-        watchedAdapter.deleteWatchedMovie(movie,position)
+        watchedAdapter.deleteWatchedMovie(movie, position)
     }
 
     override fun onToWatchMovieLongClick(movie: MovieDetails, position: Int) {
         profileVm.deleteToWatchMovie(movie)
-        toWatchAdapter.deleteToWatchMovie(movie,position)
+        toWatchAdapter.deleteToWatchMovie(movie, position)
 
     }
 }

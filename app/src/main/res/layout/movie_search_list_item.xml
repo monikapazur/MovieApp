@@ -17,9 +17,8 @@
         <ImageView
             android:id="@+id/card_view_poster"
             android:layout_width="200dp"
-            android:layout_height="240dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop" />
+            android:layout_height="270dp"
+            android:scaleType="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"

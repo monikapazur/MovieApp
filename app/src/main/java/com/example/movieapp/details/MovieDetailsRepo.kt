@@ -22,13 +22,6 @@ class MovieDetailsRepo(private val apiService :MovieDBInterface) {
 
         return movieDetailsNetworkDataSource.downloadedMovieResponse
     }
-    fun getMovieDetailsNetworkState(): LiveData<NetworkState>{
-        return movieDetailsNetworkDataSource.networkState
-    }
-    val videoResponse : MutableLiveData<List<Video>> = MutableLiveData()
 
 
-    /*fun getVideo(movie_id: Int): Single<List<Video>> {
-        return getVideo(movie_id)
-    }*/
 }

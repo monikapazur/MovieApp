@@ -46,12 +46,6 @@ class MoviesFragment : Fragment() {
         rv_search_movie_list.setHasFixedSize(true)
         rv_search_movie_list.adapter = searchMovieAdapter
 
-        /*viewModel.moviePagedList.observe(viewLifecycleOwner, {
-            movieAdapter.submitList(it)
-            newArrayList = movieAdapter.submitList(it)
-
-        })*/
-
 
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -63,16 +57,6 @@ class MoviesFragment : Fragment() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-
-
-              /*  viewModel.moviePagedList.observe(viewLifecycleOwner, {
-                    for (i in it) {
-                        if (i.title.contains(searchEditText.text)) {
-                            newArrayList.add(i)
-                        }
-                    }
-
-                })*/
 
                 var query = s.toString()
                 if(query.isNotEmpty()){

@@ -35,7 +35,7 @@ https://api.themoviedb.org/3/
 interface MovieDBInterface {
 
     @GET("movie/popular")
-    fun getPopularMovie(@Query("page") page: Int): Single<MovieResponse> // do tego zeby wziac numer stony z linku page=1
+    fun getPopularMovie(@Query("page") page: Int): Single<MovieResponse>
 
     @GET("movie/upcoming")
     fun getUpcomingMovie(@Query("page") page: Int): Single<UpcomingMovieResponse>
@@ -59,7 +59,5 @@ interface MovieDBInterface {
         @Query("query") query: String
 
     ): SearchMovieResponse
-/*
-    @GET("group/{id}/users")
-    fun groupList(@Path("id") groupId: Int): Call<List<User?>?>?*/
+
 }

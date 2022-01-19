@@ -18,15 +18,9 @@ class SingleMovieViewModel(private val movieRepository: MovieDetailsRepo, movieI
     private val compositeDisposable = CompositeDisposable()
     private val repo = FirebaseRepo()
 
-    var videos: MutableLiveData<Single<List<Video>>> = MutableLiveData()
-
     val movieDetails: LiveData<MovieDetails> by lazy {
         movieRepository.fetchSingleDetails(compositeDisposable, movieId)
     }
-    val movieState: LiveData<NetworkState> by lazy {
-        movieRepository.getMovieDetailsNetworkState()
-    }
-
 
     override fun onCleared() {
         super.onCleared()
@@ -43,10 +37,4 @@ class SingleMovieViewModel(private val movieRepository: MovieDetailsRepo, movieI
         repo.addToWatchedMovie(movie)
     }
 
-    /*fun getVideo(movie_id: Int) {
-        viewModelScope.launch {
-            val response = movieRepository.getVideo(movie_id)
-            videos.value = response
-        }
-    }*/
 }

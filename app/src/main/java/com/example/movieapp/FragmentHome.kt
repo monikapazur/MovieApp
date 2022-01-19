@@ -2,14 +2,11 @@ package com.example.movieapp
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.movieapp.data.Film
 import com.example.movieapp.data.api.MovieDBClient
 import com.example.movieapp.data.api.MovieDBInterface
 import com.example.movieapp.data.now_playing_movie.NowPlayingMoviePagedListAdapter
@@ -26,30 +23,16 @@ import com.example.movieapp.data.upcoming_movie.UpcomingMoviePagedListRepo
 import com.example.movieapp.data.upcoming_movie.UpcomingMovieViewModel
 import kotlinx.android.synthetic.main.fragment_home_fragment.*
 
-class FragmentHome : Fragment(), OnFilmItemLongClick {
+class FragmentHome : Fragment() {
 
-    private val homeVm by viewModels<FragmentHomeViewModel>()
-    private val adapter = FilmAdapter(this)
     private lateinit var viewModel: MainActivityViewModel
-
     private lateinit var nowPlayingMovieVm : NowPlayingMovieViewModel
     lateinit var nowPlayingMovieRepo : NowPlayingMoviePagedListRepo
-
     private lateinit var topRatedMovieVm : TopRatedMovieViewModel
     lateinit var topRatedMovieRepo : TopRatedMoviePagedListRepo
-
     lateinit var movieRepo: MoviePageListRepo
-
     private lateinit var upcomingMovieVm : UpcomingMovieViewModel
     lateinit var upcomingMovieRepo : UpcomingMoviePagedListRepo
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,12 +44,9 @@ class FragmentHome : Fragment(), OnFilmItemLongClick {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val apiService: MovieDBInterface = MovieDBClient.getClient()
         movieRepo = MoviePageListRepo(apiService)
-
         viewModel = getViewModel()
-
         val movieAdapter = PopularMoviePagedListAdapter(requireContext())
         val linearLayoutManagerPopularMovies = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
         val linearLayoutManagerNowPlayingMovies = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
@@ -120,19 +100,6 @@ class FragmentHome : Fragment(), OnFilmItemLongClick {
 
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        homeVm.films.observe(viewLifecycleOwner, { list ->
-            adapter.setFilms(list)
-
-        })
-
-    }
-
-    override fun onFilmLongClick(film: Film, position: Int) {
-        Toast.makeText(requireContext(), film.name, Toast.LENGTH_LONG).show()
-        homeVm.addFavFilm(film)
-    }
 
     private fun getViewModel():MainActivityViewModel {
         return ViewModelProviders.of(this, object : ViewModelProvider.Factory{

@@ -24,12 +24,10 @@
             <ImageView
                 android:id="@+id/iv_movie_poster"
                 android:layout_width="match_parent"
-                android:layout_height="551dp"
+                android:layout_height="550dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="center"
-                android:layout_marginTop="-72dp"
-                android:layout_marginEnd="-1dp"
                 android:scaleType="matrix"
                 tools:src="@tools:sample/avatars" />
 
@@ -47,14 +45,15 @@
                 android:paddingRight="4dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/movie_title"
-                        android:layout_width="265dp"
+                        android:layout_width="223dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
@@ -89,7 +88,7 @@
 
                         <ImageButton
                             android:id="@+id/add_to_toWatchMovie"
-                            android:layout_width="30dp"
+                            android:layout_width="40dp"
                             android:layout_height="30dp"
                             android:background="#160E32"
                             android:src="@drawable/ic_baseline_playlist_add_24" />
@@ -111,17 +110,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="date"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="Category"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/descriptionTextView"
@@ -129,52 +131,32 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="Description"
                     android:textAlignment="textStart"
                     android:textColor="#FFFFFF"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="italic" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/trailerClickTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:text="Trailer"
-                    android:textColor="#FFFFFF" />
+                    android:layout_marginBottom="8dp"
+                    android:text="Click button below to watch a trailer"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/click_to_watch_trailer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:text="Click me" />
+                    android:text="Click me"
+                    app:icon="@drawable/ic_baseline_movie_24" />
 
-
-                <!-- <LinearLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent"
-                     android:orientation="vertical"
-                     android:gravity="center">
-                     <Button
-                         android:id="@+id/play"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="play" />
-                     <com.google.android.youtube.player.YouTubePlayerView
-                         android:id="@+id/ytPlayer"
-                         android:layout_width="match_parent"
-                         android:layout_height="250dp" />-->
-
-
-                <!--    </LinearLayout>-->
-
-                <!--<fragment
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/VideosFragment">
-
-                </fragment>-->
 
             </LinearLayout>
 

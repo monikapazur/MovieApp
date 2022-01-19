@@ -23,9 +23,7 @@ class RegistrationFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupSignClick()
-
     }
 
     private fun setupSignClick() {
@@ -53,8 +51,6 @@ class RegistrationFragment : BaseFragment() {
                                 registrationVm.createNewUser(user)
                                 startApp()
                             }
-
-
                         }
                         .addOnFailureListener { exc ->
                             Toast.makeText(

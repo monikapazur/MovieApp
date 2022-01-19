@@ -16,7 +16,5 @@
         app:navGraph="@navigation/log_reg_nav"
         tools:layout="@layout/fragment_sign_in" >
     </fragment>
-    <!--android:name="androix.naviagtion.fragment.NavHostFragment"-->
-    <!--android:name="com.example.movieapp.LoginFragment"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

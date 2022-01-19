@@ -26,37 +26,6 @@ class PopularMoviesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_popular_movies)
-/*
-        supportActionBar?.hide()
-
-        val apiService: MovieDBInterface = MovieDBClient.getClient()
-
-        movieRepo = MoviePageListRepo(apiService)
-
-        viewModel = getViewModel()
-
-        val movieAdapter = PopularMoviePagedListAdapter(this)
-
-        val gridLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-
-
-        var rv_movie_list = findViewById<RecyclerView>(R.id.rv_movie_list)
-        rv_movie_list.layoutManager = gridLayoutManager
-        rv_movie_list.setHasFixedSize(true)
-        rv_movie_list.adapter = movieAdapter
-
-        viewModel.moviePagedList.observe(this, Observer {
-            movieAdapter.submitList(it)
-        })*/
-
-       /* viewModel.networkState.observe(this, Observer {
-            nananan
-        })*/
-
-        /*val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavView)
-        val navController = findNavController(R.id.navigationHostFragment)
-        bottomNavigationView.setupWithNavController(navController)*/
-
 
 
     }

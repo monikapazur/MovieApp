@@ -139,6 +139,7 @@
                     android:id="@+id/favMovieTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:text="Favourite Movies"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
@@ -153,6 +154,7 @@
                     android:id="@+id/watchedMovieTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:text="Watched Movies"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
@@ -167,6 +169,7 @@
                     android:id="@+id/toWatchMovieTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:text="to Watch Movies"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
@@ -175,7 +178,8 @@
                     android:id="@+id/toWatchMovies_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="346dp"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="48dp" />
 
 
             </LinearLayout>

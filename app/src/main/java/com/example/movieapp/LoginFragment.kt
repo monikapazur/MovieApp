@@ -40,7 +40,6 @@ class LoginFragment : BaseFragment() {
 
     private fun setupLoginClick() {
 
-
         signInButton.setOnClickListener {
             val email = emailSignIn.text?.trim().toString()
             val password = passwordSignIn.text?.trim().toString()
