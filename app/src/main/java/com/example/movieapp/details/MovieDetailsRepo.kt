@@ -22,6 +22,4 @@ class MovieDetailsRepo(private val apiService :MovieDBInterface) {
 
         return movieDetailsNetworkDataSource.downloadedMovieResponse
     }
-
-
 }

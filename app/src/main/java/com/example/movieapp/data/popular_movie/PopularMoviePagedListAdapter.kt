@@ -66,5 +66,4 @@ class PopularMoviePagedListAdapter(public val context: Context) :
         }
     }
 
-
 }

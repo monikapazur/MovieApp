@@ -6,18 +6,15 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.data.api.MovieDBClient
 import com.example.movieapp.data.api.MovieDBInterface
-import com.example.movieapp.data.o.PopularMovies
 import com.example.movieapp.data.popular_movie.MainActivityViewModel
 import com.example.movieapp.data.popular_movie.MoviePageListRepo
 import kotlinx.android.synthetic.main.fragment_movies.*
@@ -28,7 +25,6 @@ class MoviesFragment : Fragment() {
     lateinit var movieRepo: MoviePageListRepo
 
     private lateinit var searchMovieRepo: SearchMovieRepo
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,13 +55,13 @@ class MoviesFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {
 
                 var query = s.toString()
-                if(query.isNotEmpty()){
+                if (query.isNotEmpty()) {
                     searchMovieRepo = SearchMovieRepo()
                     var searchMovieVm = getSearchMovieViewModel(query)
                     searchMovieVm.getSearchMovie(query)
-                    searchMovieVm.searchMovieResponse.observe(viewLifecycleOwner,{
+                    searchMovieVm.searchMovieResponse.observe(viewLifecycleOwner, {
 
-                        searchMovieAdapter.setSearchMovies( it.searchMoviesList)
+                        searchMovieAdapter.setSearchMovies(it.searchMoviesList)
                     })
                 }
 
@@ -73,7 +69,7 @@ class MoviesFragment : Fragment() {
 
         })
 
-        }
+    }
 
     /* private val mIssuePostLiveData = MutableLiveData<MutableList<PopularMovies>>()
 

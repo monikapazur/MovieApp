@@ -34,12 +34,8 @@ class FragmentHome : Fragment() {
     private lateinit var upcomingMovieVm : UpcomingMovieViewModel
     lateinit var upcomingMovieRepo : UpcomingMoviePagedListRepo
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home_fragment, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

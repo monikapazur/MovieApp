@@ -49,8 +49,7 @@ class SingleDetails : AppCompatActivity() {
                 trailerClickTextView.visibility = View.INVISIBLE
                 click_to_watch_trailer.visibility = View.INVISIBLE
 
-            }
-            else {
+            } else {
                 val key = it.videosList[0].key
                 click_to_watch_trailer.setOnClickListener {
                     val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + key))
@@ -65,9 +64,8 @@ class SingleDetails : AppCompatActivity() {
                     }
                 }
             }
-
-
         })
+
         add_to_WatchedMovie.setOnClickListener {
             viewModel.movieDetails.observe(this, Observer {
                 viewModel.addToWatchedMovie(it)

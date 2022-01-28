@@ -3,13 +3,10 @@ package com.example.movieapp.data.repo
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.movieapp.data.o.MovieDetails
 import com.example.movieapp.data.api.MovieDBInterface
-import com.example.movieapp.data.o.Video
-import io.reactivex.Single
+import com.example.movieapp.data.o.MovieDetails
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
 
 class MovieDetailsNetDataSource(
     private val apiService: MovieDBInterface,
@@ -17,10 +14,10 @@ class MovieDetailsNetDataSource(
 ) {
     private val downloadedMovieDetailsResponse_ = MutableLiveData<MovieDetails>()
     val downloadedMovieResponse: LiveData<MovieDetails>
-    get() = downloadedMovieDetailsResponse_
+        get() = downloadedMovieDetailsResponse_
 
-    fun fetchMovieDetails(movie_id: Int){
-        try{
+    fun fetchMovieDetails(movie_id: Int) {
+        try {
             compositeDisposable.add(
                 apiService.getMovieDet(movie_id)
                     .subscribeOn(Schedulers.io())
@@ -34,8 +31,7 @@ class MovieDetailsNetDataSource(
                         }
                     )
             )
-        }
-        catch (e:Exception){
+        } catch (e: Exception) {
             Log.e("MovieDetailsDataSource", e.message.toString())
         }
 

@@ -11,9 +11,11 @@ class FragmentProfileViewModel : ViewModel() {
    val favMovies = user.switchMap {
        repo.getFavMovies(it.favFilms)
    }
+
     fun deleteFavMovie(movie: MovieDetails){
         repo.deleteFavMovies(movie)
     }
+
     fun deleteWatchedMovie(movie: MovieDetails){
         repo.deleteWatchedMovies(movie)
     }
@@ -26,6 +28,7 @@ class FragmentProfileViewModel : ViewModel() {
     val toWatchMovies = user.switchMap {
         repo.getToWatchMovies(it.toWatchMovie)
     }
+
     fun editProfileData(map: Map<String, String>){
         repo.editProfileData(map)
     }

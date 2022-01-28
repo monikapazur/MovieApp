@@ -11,15 +11,10 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlin.coroutines.coroutineContext
 
-class MovieDataSource(
-    private val apiService: MovieDBInterface,
-    private val compositeDisposable: CompositeDisposable
-):PageKeyedDataSource<Int, PopularMovies>() {
+class MovieDataSource(private val apiService: MovieDBInterface, private val compositeDisposable: CompositeDisposable)
+    :PageKeyedDataSource<Int, PopularMovies>() {
     private var page = FIRST_PAGE
-    override fun loadInitial(
-        params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, PopularMovies>
-    ) {
+    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, PopularMovies>) {
         compositeDisposable.add(
             apiService.getPopularMovie(page)
                 .subscribeOn(Schedulers.io())
