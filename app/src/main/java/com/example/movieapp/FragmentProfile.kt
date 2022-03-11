@@ -65,7 +65,7 @@ class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLong
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        profileVm.user.observe(viewLifecycleOwner, { user ->
+        profileVm.user.observe(viewLifecycleOwner) { user ->
             var favList = listOf<Int>()
             var toWatchList = listOf<Int>()
             var watchedList = listOf<Int>()
@@ -87,37 +87,37 @@ class FragmentProfile : Fragment(), OnMovieItemLongClick, OnWatchedMovieItemLong
                 viewModel = getViewModel(i)
                 val fetchSingleDetails =
                     movieRepository.fetchSingleDetails(CompositeDisposable(), i)
-                        .observe(viewLifecycleOwner,
-                            {
-                                movieFavList.add(it)
-                                adapter.setFavMovies(movieFavList)
-                            })
+                        .observe(viewLifecycleOwner
+                        ) {
+                            movieFavList.add(it)
+                            adapter.setFavMovies(movieFavList)
+                        }
 
             }
             for (i in watchedList) {
                 viewModel = getViewModel(i)
                 val fetchSingleDetails =
                     movieRepository.fetchSingleDetails(CompositeDisposable(), i)
-                        .observe(viewLifecycleOwner,
-                            {
-                                watchedMovieList.add(it)
-                                watchedAdapter.setWatchedMovies(watchedMovieList)
-                            })
+                        .observe(viewLifecycleOwner
+                        ) {
+                            watchedMovieList.add(it)
+                            watchedAdapter.setWatchedMovies(watchedMovieList)
+                        }
 
             }
             for (i in toWatchList) {
                 viewModel = getViewModel(i)
                 val fetchSingleDetails =
                     movieRepository.fetchSingleDetails(CompositeDisposable(), i)
-                        .observe(viewLifecycleOwner,
-                            {
-                                toWatchMovieList.add(it)
-                                toWatchAdapter.setToWatchMovies(toWatchMovieList)
-                            })
+                        .observe(viewLifecycleOwner
+                        ) {
+                            toWatchMovieList.add(it)
+                            toWatchAdapter.setToWatchMovies(toWatchMovieList)
+                        }
 
             }
             bindUserData(user)
-        })
+        }
 
 
     }
