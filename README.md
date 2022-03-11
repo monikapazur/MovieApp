@@ -20,5 +20,7 @@ This is app about filmography. The app is dedicated for movie fans.
 ## Screenshots
 
 <img src="screenshots/Screenshot_log.jpg" width=200 > <img src="screenshots/Screenshot_reg.jpg" width=200 >
+
 <img src="screenshots/Screenshot_profile.jpg" width=200 > <img src="screenshots/Screenshot_search.jpg" width=200 >
+
 <img src="screenshots/Screenshot_home.jpg" width=200 > <img src="screenshots/Screenshot_details.jpg" width=200 >
